@@ -1,0 +1,34 @@
+.container {
+  width: 100vw;
+  background-color: #f0f2f5;
+}
+
+/* Căn chỉnh lại bảng */
+.custom-table {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề bảng */
+.custom-table .ant-table-thead > tr > th {
+  background-color: #1890ff;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Căn giữa nội dung bảng */
+.custom-table .ant-table-tbody > tr > td {
+  padding: 12px;
+}
+
+/* Hover trên hàng */
+.custom-table .ant-table-tbody > tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* Định dạng cho cột Title */
+.custom-table .ant-table-tbody > tr > td:nth-child(1) {
+  font-weight: 500;
+}

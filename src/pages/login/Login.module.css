@@ -1,0 +1,57 @@
+/* Đặt container ở giữa màn hình */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #f0f2f5;
+  }
+  
+  /* Style cho Card */
+  .login-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 0 16px 16px 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: #fff;
+  }
+  
+  /* Tiêu đề đăng nhập */
+  .login-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Style cho form */
+  .login-form{
+    margin-bottom: 16px;
+    font-size: 16px;
+    color: #000000;
+    font-weight: 400;
+    
+  }
+
+  .ant-form-item{
+    margin-bottom: 16px;
+  }
+
+.label{
+  font-size: 16px;
+    color: #000000;
+    font-weight: 400;
+}
+
+.ant-input{
+  height: 40px;
+}
+  
+/* Button full width */
+  .ant-btn {
+    margin-top: 16px;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+  }
+  
