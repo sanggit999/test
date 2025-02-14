@@ -1,8 +1,11 @@
 import { Button, Form, Input, message, Typography } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
-import styles from "../dashboard/EditPost.module.css";
+
 import { useEffect, useState } from "react";
-import { getPostById, putPosts } from "../../services/post/postService";
+import { getPostById, putPosts } from "../../services/post/PostService";
+import BaseForm from "../../components/BaseForm";
+import BaseInput from "../../components/BaseInput";
+import BaseButton from "../../components/BaseButton";
 const EditPostPage = () => {
   const { id } = useParams<{ id: string }>();
   const [form] = Form.useForm();
@@ -44,10 +47,12 @@ const EditPostPage = () => {
   };
 
   return (
-    <div className={styles["container"]}>
-      <h2 style={{ color: "#000000" }}>Chỉnh sửa bài viết</h2>
+    <div className="min-h-screen min-w-screen p-15 bg-white">
+      <Typography.Title level={1} className="text-center">
+        Chỉnh sửa Post
+      </Typography.Title>
 
-      <Form form={form} onFinish={onFinish} layout="vertical">
+      <BaseForm form={form} onFinish={onFinish} layout="vertical">
         <Form.Item name="id" label="Id">
           <Typography.Text>{id}</Typography.Text>
         </Form.Item>
@@ -56,21 +61,35 @@ const EditPostPage = () => {
           label="Tiêu đề"
           rules={[{ required: true, message: "Vui lòng nhập tiêu đề!" }]}
         >
-          <Input />
+          <BaseInput />
         </Form.Item>
         <Form.Item
           name="body"
           label="Nội dung"
           rules={[{ required: true, message: "Vui lòng nhập nội dung!" }]}
         >
-          <Input.TextArea rows={4} />
+          <BaseInput type="textarea" />
         </Form.Item>
-        <Button type="primary" htmlType="submit" loading={loading}>
-          Cập nhật
-        </Button>
 
-        <Button onClick={() => navigate("/dashboard")}>Hủy</Button>
-      </Form>
+        <div className="flex gap-5">
+          <Form.Item>
+            <BaseButton
+              children="Cập nhật"
+              type="primary"
+              htmlType="button"
+              onClick={() => navigate("/dashboard")}
+              loading={loading}
+            />
+          </Form.Item>
+
+          <BaseButton
+            children="Huỷ"
+            type="dashed"
+            htmlType="button"
+            onClick={() => navigate("/dashboard")}
+          />
+        </div>
+      </BaseForm>
     </div>
   );
 };

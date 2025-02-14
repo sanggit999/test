@@ -1,9 +1,9 @@
 import { Form, Input, Button, Card, Typography } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-
-import styles from "./Login.module.css";
-
+import BaseForm from "../../components/BaseForm";
+import BaseInput from "../../components/BaseInput";
+import BaseButton from "../../components/BaseButton";
 const LoginPage = () => {
   const navigate = useNavigate();
 
@@ -25,55 +25,33 @@ const LoginPage = () => {
   };
 
   return (
-    <div className={styles["container"]}>
-      <Card className={styles["login-card"]}>
-        <Typography.Title level={1} className={styles["login-title"]}>
+    <div className="flex items-center justify-center min-h-screen min-w-screen bg-white">
+      <Card className="w-full max-w-sm p-6 shadow-lg">
+        <Typography.Title level={1} className="text-center">
           Đăng nhập
         </Typography.Title>
-        <Form
-          name="login_form"
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-          layout="vertical"
-          className={styles["login-form"]}
-        >
-          <Form.Item
-            className={styles["ant-form-item"]}
-            name="username"
-            label="Tài khoản"
-            rules={usernameRules}
-          >
-            <Input
-              className={styles["ant-input"]}
-              prefix={<UserOutlined />}
-              placeholder="Nhập tài khoản"
-            />
+        <BaseForm onFinish={onFinish}>
+          <Form.Item name="username" label="Tài khoản" rules={usernameRules}>
+            <BaseInput prefix={<UserOutlined />} placeholder="Nhập tài khoản" />
           </Form.Item>
-
-          <Form.Item
-            className={styles["ant-form-item"]}
-            name="password"
-            label="Mật khẩu"
-            rules={passwordRules}
-          >
-            <Input.Password
-              className={styles["ant-input"]}
+          <Form.Item name="password" label="Mật khẩu" rules={passwordRules}>
+            <BaseInput
               prefix={<LockOutlined />}
-              placeholder="Nhập mật khẩu"
+              placeholder="Nhập tài khoản"
+              type="password"
             />
           </Form.Item>
 
-          <Form.Item className={styles["ant-form-item"]}>
-            <Button
+          <Form.Item>
+            <BaseButton
+              children="Đăng nhập"
               type="primary"
               htmlType="submit"
-              block
-              className={styles["ant-btn"]}
-            >
-              Đăng nhập
-            </Button>
+              onClick={() => navigate("/dashboard")}
+              className="w-full"
+            />
           </Form.Item>
-        </Form>
+        </BaseForm>
       </Card>
     </div>
   );

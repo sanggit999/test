@@ -1,8 +1,11 @@
-import { Button, Form, Input, message } from "antd";
-import styles from "../dashboard/EditPost.module.css";
+import { Button, Form, Input, message, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { createPosts } from "../../services/post/postService";
+import { createPosts } from "../../services/post/PostService";
+import BaseForm from "../../components/BaseForm";
+import FormItem from "antd/es/form/FormItem";
+import BaseInput from "../../components/BaseInput";
+import BaseButton from "../../components/BaseButton";
 
 const CreatePostPage = () => {
   const [loading, setLoading] = useState(false);
@@ -26,39 +29,46 @@ const CreatePostPage = () => {
   };
 
   return (
-    <div className={styles["container"]}>
-      <h2 style={{ color: "#000000" }}>Tạo Bài Viết Mới</h2>
-      <Form layout="vertical" onFinish={onFinish}>
-        <Form.Item
+    <div className="min-h-screen min-w-screen p-15 bg-white">
+      <Typography.Title level={1} className="text-center">
+        Tạo Post
+      </Typography.Title>
+
+      <BaseForm layout="vertical" onFinish={onFinish}>
+        <FormItem
           label="ID"
           name="id"
           rules={[{ required: true, message: "Vui lòng nhập ID!" }]}
         >
-          <Input type="number" placeholder="Nhập ID" />
-        </Form.Item>
+          <BaseInput placeholder="Nhập id" />
+        </FormItem>
 
-        <Form.Item
+        <FormItem
           label="Tiêu đề"
           name="title"
           rules={[{ required: true, message: "Vui lòng nhập tiêu đề!" }]}
         >
-          <Input placeholder="Nhập tiêu đề" />
-        </Form.Item>
+          <BaseInput placeholder="Nhập tiêu đề" />
+        </FormItem>
 
-        <Form.Item
-          label="Nội dung"
+        <FormItem
+          label="ID"
           name="body"
-          rules={[{ required: true, message: "Vui lòng nhập nội dung!" }]}
+          rules={[{ required: true, message: "Vui lòng nhập nội dung" }]}
         >
-          <Input.TextArea rows={4} placeholder="Nhập nội dung" />
-        </Form.Item>
+          <BaseInput placeholder="Nhập nội dung" />
+        </FormItem>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" loading={loading}>
-            Tạo bài viết
-          </Button>
+          <BaseButton
+            children="Tạo"
+            type="primary"
+            htmlType="submit"
+            className="w-50"
+            loading={loading}
+          />
         </Form.Item>
-      </Form>
+      </BaseForm>
     </div>
   );
 };

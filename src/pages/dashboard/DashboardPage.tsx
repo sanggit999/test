@@ -1,8 +1,9 @@
 import { useState, useEffect, useMemo } from "react";
-import { Button, Input, Modal, Table, Typography, message } from "antd";
-import styles from "./Dashboard.module.css";
-import { deletePosts, getPosts } from "../../services/post/postService";
+import { Button, Modal, Table, Typography, message } from "antd";
 import { useNavigate } from "react-router-dom";
+import { deletePosts, getPosts } from "../../services/post/PostService";
+import BaseInput from "../../components/BaseInput";
+import BaseButton from "../../components/BaseButton";
 
 interface Post {
   userId: number;
@@ -85,19 +86,23 @@ const DashboardPage = () => {
         title: "Action",
         key: "action",
         render: (_: any, record: any) => (
-          <>
-            <Button
+          <div className=" flex gap-5">
+            <BaseButton
+              children="Sửa"
+              type="primary"
+              htmlType="button"
               onClick={() => {
                 navigate(`/edit-post/${record.id}`);
               }}
-              type="link"
-            >
-              Sửa
-            </Button>
-            <Button onClick={() => handleDelete(record.id)} type="link" danger>
-              Xóa
-            </Button>
-          </>
+            />
+            <BaseButton
+              children="Xoá"
+              type="primary"
+              htmlType="button"
+              onClick={() => handleDelete(record.id)}
+              style={{ backgroundColor: "#E4080A" }}
+            />
+          </div>
         ),
       },
     ],
@@ -105,25 +110,29 @@ const DashboardPage = () => {
   );
 
   return (
-    <div className={styles["container"]}>
-      <Typography.Title level={1}>Dashboard</Typography.Title>
-      <Input
-        placeholder="Tìm kiếm tiêu đề...."
-        value={searchText}
-        onChange={(value) => setSearchText(value.target.value)}
-        style={{ width: 300, marginBottom: 20 }}
-      />
+    <div className="min-h-screen min-w-screen bg-white">
+      <Typography.Title level={1} className="text-center">
+        Dashboard
+      </Typography.Title>
 
-      <Button
-        type="primary"
-        onClick={() => navigate("/create-post")}
-        style={{ marginBottom: 16, marginLeft: 16 }}
-      >
-        Tạo Post
-      </Button>
+      <div className=" pl-10 flex gap-5">
+        <BaseInput
+          placeholder="Tìm kiếm tiêu đề...."
+          value={searchText}
+          onChange={(value) => setSearchText(value.target.value)}
+          className=" max-w-sm min-h-10 "
+        />
+
+        <BaseButton
+          children="Tạo post"
+          type="primary"
+          htmlType="button"
+          onClick={() => navigate("/create-post")}
+        />
+      </div>
 
       <Table
-        className={styles["custom-table"]}
+        className="p-2"
         dataSource={filteredData}
         columns={columns}
         loading={loading}
